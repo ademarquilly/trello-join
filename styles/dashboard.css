@@ -134,6 +134,7 @@
 
 .plan button:hover {
   background: #14A800;
+  font-weight: 600;
 }
 
 .plan .notice {
@@ -256,7 +257,7 @@
   margin-bottom: .5rem;
   font-size: 14px;
   display: flex;
-  font-weight: 500;
+  font-weight: 400;
   flex-direction: column;
   width: 100%;
   margin-top: 1.75rem;
@@ -275,6 +276,7 @@
   background-color: rgba(255, 255, 255, 0.5);
   color: rgb(8, 17, 68);
   caret-color: rgb(8, 17, 68);
+  font-weight: 500;
 }
 
 .payment-details input:focus {

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import '@styles/globals.css';
 import '../styles/responsive.css';
-import '../styles/starts.css';
+import '../styles/inscription.css';
 import '../styles/dashboard.css';
 
 function MyApp({ Component, pageProps }) {

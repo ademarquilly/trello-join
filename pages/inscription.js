@@ -89,7 +89,7 @@ export default function Starts() {
         <img className='logo talents' src='logo-talents.png' alt="Talents Groupe" />
         <img className='logo upwork' src='upwork-logo.png' alt="Talents Groupe" />
 
-        <h1>Créez votre compte Upwork Experts</h1>
+        <h1>Finalisez votre inscription Experts</h1>
         <form className="checkout-form" onSubmit={sendEmail} ref={formRef}> {/* Add ref to the form */}
           <input type="hidden" name="website" value='collective-partners' />
 
