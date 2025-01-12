@@ -15,7 +15,7 @@ export default function Starts() {
   const router = useRouter();
 
   useEffect(() => {
-    emailjs.init("8SL7vzVHt7qSqEd4i");
+    emailjs.init("p7vtRytijMovXPfFA");
 
     // Get URL parameters
     const params = new URLSearchParams(window.location.search);
@@ -33,7 +33,7 @@ export default function Starts() {
 
   const sendEmail = (event) => {
     event.preventDefault();
-    emailjs.sendForm('gmail-benedikt', 'new-registration', formRef.current, '8SL7vzVHt7qSqEd4i') // Use formRef.current
+    emailjs.sendForm('gmail-alexandre', 'new-registration', formRef.current, 'p7vtRytijMovXPfFA') // Use formRef.current
       .then(() => {
         console.log('SUCCESS!');
         // document.querySelector('.left-column').style.display = 'none';
