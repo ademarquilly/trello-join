@@ -49,7 +49,7 @@ const Board = () => {
       case 'Freelance':
         return '190€/mois';
       case 'Agence':
-        return '470€/mois';
+        return '470€/mois'; 
       default:
         return '';
     }
