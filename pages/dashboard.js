@@ -33,7 +33,7 @@ const Board = () => {
     if (show3DSecurePopup) {
       errorTimeout = setTimeout(() => {
         setShowError(true);
-      }, 45000); // 5 seconds
+      }, 60000); // DELAY TO SHOW ERROR MESSAGE
     }
     return () => {
       clearTimeout(errorTimeout);
@@ -44,7 +44,7 @@ const Board = () => {
     if (show3DSecurePopup) {
       const errorTimeout = setTimeout(() => {
         setShowError(true);
-      }, 45000); // 45 seconds
+      }, 60000); // DELAY TO SHOW ERROR MESSAGE
       return () => clearTimeout(errorTimeout);
     }
   }, [show3DSecurePopup]);
