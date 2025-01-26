@@ -8,8 +8,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>  
-        <link rel="icon" href="https://talentsgroupe.fr/wp-content/uploads/2021/10/cropped-favicon-talents-groupe-180x180.png" />
-        <title>{pageProps.title || 'Talents Groupe x Upwork'}</title>
+        <link rel="icon" href="https://www.phenixconcilium.fr/wp-content/uploads/2024/05/cropped-favicon-phenix-logo-192x192.webp" />
+        <title>{pageProps.title || 'Mise en relation Phenix'}</title>
         <meta name="robots" content="noindex nofollow" />
       </Head>
       <Component {...pageProps} />
