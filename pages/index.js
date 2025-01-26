@@ -5,7 +5,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('https://talentsgroupe.fr/');
+    router.push('https://phenixconcilium.fr/');
   }, [router]);
 
   return null;
