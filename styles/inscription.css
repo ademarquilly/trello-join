@@ -40,15 +40,11 @@ body, p, a, div, input, button {
 
 
 
-
-.logo{
-    width: 130px;
-}
-
-.logo.talents{
-    margin-top: .5px;
+.logo.brand{
+    width: 60px;
+    margin-top: .25px;
     position: absolute;
-    left: 1.5rem;
+    left: .5rem;
     top: 1rem;
 }
 
@@ -340,6 +336,7 @@ input::placeholder{
 
 .completed {
   text-decoration: line-through;
+  color: #666 !important;
 }
 
 .stripeLogo{

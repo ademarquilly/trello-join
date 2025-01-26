@@ -134,11 +134,11 @@ const Board = () => {
         <div className="plans">
           <div className="plan ">
             <h3>Freelance</h3>
-            <p>190€<span className='month'>/mois</span></p>
+            <p>Gratuit <span className='month'>/30 jours</span></p>
             <ul>
               <li>9% de commissions Upwork</li>
               <li>5 mises en relation/mois</li>
-              <li>Support Talents Groupe</li>
+              <li>Support Phenix Recrutement</li>
             </ul>
             <button onClick={() => showPaymentPopup('Freelance')}>Essayer gratuitement</button>
             <span className='notice'>0€ pendant 30 jours, puis 190€/mois</span>
@@ -149,12 +149,12 @@ const Board = () => {
             <ul>
               <li>4% de commissions Upwork</li>
               <li>10 mises en relation/mois</li>
-              <li>Support Talents Groupe</li>
+              <li>Support Phenix Recrutement</li>
               <li>Accès recruteur Upwork</li>
               <li>Programme de parrainage</li>
             </ul>
-            <button onClick={() => showPaymentPopup('Agence')}>Essayer gratuitement</button>
-            <span className='notice'>0€ pendant 30 jours, puis 470€/mois</span>
+            <button className='agence'>Payer et commencer</button>
+            <span className='notice'>470€/mois, facturé à date de l'abonnement</span>
           </div>
         </div>
       </div>

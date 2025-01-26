@@ -71,10 +71,17 @@
   width: 48%;
   position: relative;
   text-align: left;
+  transition: transform 0.2s ease;
 }
+
+.plan:hover{
+  transform: scale(1.015);
+}
+
 
 .plan.star {
   border-color:#0f6c03 ;
+  border-width: 1.5px;
 }
 
 .plan ul {
@@ -132,9 +139,12 @@
   transition: color 0.5s ease, background 0.5s ease;
 }
 
+.plan button.agence{
+  cursor: disabled;
+}
+
 .plan button:hover {
   background: #14A800;
-  font-weight: 600;
 }
 
 .plan .notice {
@@ -176,10 +186,6 @@
   width: 370px;
 }
 
-.popup-content .plan.star {
-  border: solid 1px #dfdede;
-  box-shadow: none;
-}
 
 .payment-details, .payment-form {
   flex: 1;
