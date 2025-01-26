@@ -140,7 +140,7 @@
 }
 
 .plan button.agence{
-  cursor: disabled;
+  cursor: not-allowed !important;
 }
 
 .plan button:hover {

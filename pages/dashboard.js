@@ -134,7 +134,7 @@ const Board = () => {
         <div className="plans">
           <div className="plan ">
             <h3>Freelance</h3>
-            <p>Gratuit <span className='month'>/30 jours</span></p>
+            <p>Gratuit <span className='month'></span></p>
             <ul>
               <li>9% de commissions Upwork</li>
               <li>5 mises en relation/mois</li>
