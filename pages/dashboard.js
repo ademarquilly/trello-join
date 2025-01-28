@@ -69,7 +69,7 @@ const Board = () => {
   const getPlanPrice = (plan) => {
     switch(plan) {
       case 'Freelance':
-        return '190€/mois';
+        return '90€/mois';
       case 'Agence':
         return '470€/mois'; 
       default:
@@ -141,7 +141,7 @@ const Board = () => {
               <li>Support Phenix Recrutement</li>
             </ul>
             <button onClick={() => showPaymentPopup('Freelance')}>Essayer gratuitement</button>
-            <span className='notice'>0€ pendant 30 jours, puis 190€/mois</span>
+            <span className='notice'>0€ pendant 30 jours, puis 90€/mois</span>
           </div>
           <div className="plan star">
             <h3>Agence</h3>
