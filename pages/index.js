@@ -5,7 +5,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('https://phenixconcilium.fr/');
+    router.push('https://www.keltis.fr/');
   }, [router]);
 
   return null;

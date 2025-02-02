@@ -8,8 +8,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>  
-        <link rel="icon" href="https://www.phenixconcilium.fr/wp-content/uploads/2024/05/cropped-favicon-phenix-logo-192x192.webp" />
-        <title>{pageProps.title || 'Mise en relation - Phenix Recrutement'}</title>
+        <link rel="icon" href="https://www.keltis.fr/wp-content/uploads/2021/08/cropped-logo-2-290x290.png" />
+        <title>{pageProps.title || 'Mise en relation - Keltis'}</title>
         <meta name="robots" content="noindex nofollow" />
       </Head>
       <Component {...pageProps} />

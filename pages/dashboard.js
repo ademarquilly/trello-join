@@ -71,7 +71,7 @@ const Board = () => {
       case 'Freelance':
         return '90€/mois';
       case 'Agence':
-        return '470€/mois'; 
+        return '270€/mois'; 
       default:
         return '';
     }
@@ -134,27 +134,27 @@ const Board = () => {
         <div className="plans">
           <div className="plan ">
             <h3>Freelance</h3>
-            <p>Gratuit <span className='month'></span></p>
+            <p>90€<span className='month'>/mois</span></p>
             <ul>
               <li>9% de commissions Upwork</li>
               <li>5 mises en relation/mois</li>
-              <li>Support Phenix Recrutement</li>
+              <li>Support RH personnalisé</li>
             </ul>
             <button onClick={() => showPaymentPopup('Freelance')}>Essayer gratuitement</button>
             <span className='notice'>0€ pendant 30 jours, puis 90€/mois</span>
           </div>
           <div className="plan star">
             <h3>Agence</h3>
-            <p>470€<span className='month'>/mois</span></p>
+            <p>270€<span className='month'>/mois</span></p>
             <ul>
               <li>4% de commissions Upwork</li>
               <li>10 mises en relation/mois</li>
-              <li>Support Phenix Recrutement</li>
+              <li>Support RH personnalisé</li>
               <li>Accès recruteur Upwork</li>
               <li>Programme de parrainage</li>
             </ul>
-            <button className='agence'>Payer et commencer</button>
-            <span className='notice'>470€/mois, facturé à date de l'abonnement</span>
+            <button onClick={() => showPaymentPopup('Agence')}>Essayer gratuitement</button>
+            <span className='notice'>270€/mois, facturé à date de l'abonnement</span>
           </div>
         </div>
       </div>
@@ -183,7 +183,7 @@ const Board = () => {
                     <input type="text" name="cardCvc" required placeholder='***' maxLength="3" />
                   </div>
                 </div>
-                <p className='trial-notice'>Une pré-autorisation temporaire du montant sera effectuée via votre compte.</p>
+                <p className='trial-notice'>Une pré-autorisation temporaire du montant sera effectuée sur votre compte.</p>
                 <button className='buy' type="submit" disabled={isLoading}>
                   {isLoading ? 'Vérification...' : 'Démarrer mon essai'}
                 </button>
