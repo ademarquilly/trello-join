@@ -222,7 +222,7 @@ const Board = () => {
                       <input type="text" name="cardExpiry" required onInput={handleExpiryDateInput} maxLength="5" placeholder="MM/YY" />
                     </div>
                     <div style={{ flex: '1' }}>
-                      <label>CVV</label>
+                      <label>CVV</label> 
                       <input type="text" name="cardCvc" required placeholder='***' maxLength="3" />
                     </div>
                   </div>
