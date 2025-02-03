@@ -184,6 +184,7 @@
   width: auto;
   height: 610px; /* Adjusted height */
   width: 370px;
+  position: relative;
 }
 
 
@@ -222,10 +223,10 @@
     line-height: 1.3;
 }
 
-.payment-details .return{
+.popup-content .return{
     position: absolute;
-    top: -2.5rem;
-    left: -2.65rem;
+    top: .5rem;
+    left: .37rem;
     background-color: transparent;
     color: #262626;
     /*border: solid 1px black;*/
@@ -380,6 +381,42 @@
   .retry-btn:hover{
     background: #2388ff;
   }
+
+
+
+  /* STRIPE FORM STYLES */
+  /* STRIPE FORM STYLES */
+  #checkout{
+    width: 400px !important;
+    height: 572px;
+    overflow: hidden;
+    margin-top: -194px;
+  }
+
+  #checkout iframe {
+    width: 102% !important;
+  }
+
+  .stripe-form {
+    height: 370px;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .stripe-form iframe{
+    position: relative;
+    top: -194px;
+    min-width: 109% !important;
+    left: -4.5%;
+  }
+
+    
+
+  
+
+
+
+
 
 
 

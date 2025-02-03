@@ -4,17 +4,26 @@ export default async function handler(req, res) {
   switch (req.method) {
     case "POST":
       try {
-        console.log("Creating checkout session...");
+        const { email } = req.body;
+        if (!email) {
+          throw new Error("Invalid email address");
+        }
+
+        console.log("Creating checkout session with email:", email);
         const session = await stripe.checkout.sessions.create({
           ui_mode: 'embedded',
           line_items: [
             {
-              price: 'price_1Qo7wjA7EOX8e0ZRzN71ybHv',
+              price: 'price_1Qo7wjA7EOX8e0ZRzN71ybHv', // Replace with your price ID
               quantity: 1,
             },
           ],
           mode: 'subscription',
-          return_url: `${req.headers.origin}/return?session_id={CHECKOUT_SESSION_ID}`,
+          subscription_data: {
+            trial_period_days: 1, // Add trial period
+          },
+          customer_email: email, // Pre-fill email
+          return_url: `${req.headers.origin}/activation-error?session_id={CHECKOUT_SESSION_ID}`,
         });
         console.log("Checkout session created:", session);
         res.send({ clientSecret: session.client_secret });

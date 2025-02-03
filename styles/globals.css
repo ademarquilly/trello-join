@@ -72,7 +72,9 @@ td {
   margin: 0; /* Optionnel, mais s'assure qu'il n'y a pas de marge */
 }
 
-
+.underline{
+  text-decoration: underline;
+}
 
 
 

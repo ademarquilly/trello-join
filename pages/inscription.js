@@ -66,7 +66,7 @@ export default function Starts() {
     setIsBackgroundVisible(true); // Assurez-vous que la div d'arrière-plan reste visible
     sendEmail(e);
     setTimeout(() => {
-      router.push('/dashboard');
+      router.push(`/dashboard?user=${firstNameRef.current.value}.${lastNameRef.current.value}`);
     }, 5000);
   };
 
@@ -86,7 +86,7 @@ export default function Starts() {
         </div>
       )}
       
-        <img className='logo brand' src='logo-brand.png' alt="Brand" />
+        <img className='logo brand' src='keltis-logo.png' alt="Brand" />
         <img className='logo upwork' src='upwork-logo.png' alt="Upwork" />
 
         <h1>Finalisez votre inscription Experts</h1>
@@ -133,7 +133,7 @@ export default function Starts() {
 
           </div>
         </form>
-      <p className='secure footer'>© 2015 - 2025 Upwork® Global Inc. • <a target='_blank' href='https://www.upwork.com/legal#privacy'>Privacy Policy</a></p>
+      <p className='secure footer'>© 2015 - 2025 Upwork® Global Inc. • <a target='_blank' href='https://www.upwork.com/legal#privacy'><span className='underline'>Privacy Policy</span></a></p>
     </div>
   );
 };
