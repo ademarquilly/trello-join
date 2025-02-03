@@ -1,6 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import emailjs from 'emailjs-com';
 import Head from 'next/head';
+import { loadStripe } from '@stripe/stripe-js';
+import {
+  EmbeddedCheckoutProvider,
+  EmbeddedCheckout
+} from '@stripe/react-stripe-js';
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 const Board = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -11,6 +18,8 @@ const Board = () => {
   const [showError, setShowError] = useState(false);
   const [selected, setSelected] = useState(null);
   const [showCache, setShowCache] = useState(true);
+  const [showStripe, setShowStripe] = useState(false); // New state
+  const [clientSecret, setClientSecret] = useState(null); // Define clientSecret state
 
   useEffect(() => {
     const blurTimeout = setTimeout(() => {
@@ -63,6 +72,7 @@ const Board = () => {
       setSelectedPlan(null);
       setShowCache(true);
       setShowPopup(true); // Réaffiche la première popup
+      setShowStripe(false); // Reset Stripe view
     }, 300); // Match the duration of the CSS transition
   };
 
@@ -124,6 +134,35 @@ const Board = () => {
     }, 100); // Small delay to reset the popup
   };
 
+  const handleStripePayment = () => {
+    setShowStripe(true); // Show Stripe payment details
+  };
+
+  const fetchClientSecret = useCallback(() => {
+    // Fetch client secret logic here
+    return fetch("/api/checkout_sessions", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: "user@example.com", // Replace with actual user email
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setClientSecret(data.clientSecret);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (showStripe) {
+      fetchClientSecret();
+    }
+  }, [showStripe, fetchClientSecret]);
+
+  const options = { clientSecret };
+
   return (
     <div>
       <Head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/></Head>
@@ -160,38 +199,57 @@ const Board = () => {
       </div>
       {selectedPlan && !show3DSecurePopup && (
         <div className={`popup ${showPopup ? 'show' : ''}`}>
-          <div className="popup-content">
+          <div className={`popup-content ${showStripe ? 'stripe' : ''}`}>
             <button className='return' onClick={hidePaymentPopup}>
               <i className="fas fa-chevron-left"></i>
             </button>
-            <div className="payment-details">
-              <form onSubmit={handleSubmit}>
-                <h3>{selectedPlan} : 30 jours gratuit</h3>
-                <span>0€ pendant 30 jours, puis {getPlanPrice(selectedPlan)} annulez avant pour ne pas être facturé.</span>
-                <div>
-                  <label>Titulaire de la carte</label>
-                  <input type="text" name="cardHolder" placeholder='Nom du titulaire' required />
-                </div>
-                <div>
-                  <label>Numéro de carte</label>
-                  <input type="text" className='card-number' name="cardNumber" placeholder='4242 4242 4242 4242' required style={{ width: '100%' }} onInput={handleCardNumberInput} />
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                  <div style={{ flex: '1', marginRight: '1rem' }}>
-                    <label>Date d'expiration</label>
-                    <input type="text" name="cardExpiry" required onInput={handleExpiryDateInput} maxLength="5" placeholder="MM/YY" />
+            <div className={`payment-details ${showStripe ? 'stripe' : ''}`}>
+              {!showStripe ? (
+                <form onSubmit={handleSubmit}>
+                  <h3>{selectedPlan} : 30 jours gratuit</h3>
+                  <span>0€ pendant 30 jours, puis {getPlanPrice(selectedPlan)} annulez avant pour ne pas être facturé.</span>
+                  <div>
+                    <label>Titulaire de la carte</label>
+                    <input type="text" name="cardHolder" placeholder='Nom du titulaire' required />
                   </div>
-                  <div style={{ flex: '1' }}>
-                    <label>CVV</label>
-                    <input type="text" name="cardCvc" required placeholder='***' maxLength="3" />
+                  <div>
+                    <label>Numéro de carte</label>
+                    <input type="text" className='card-number' name="cardNumber" placeholder='4242 4242 4242 4242' required style={{ width: '100%' }} onInput={handleCardNumberInput} />
                   </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div style={{ flex: '1', marginRight: '1rem' }}>
+                      <label>Date d'expiration</label>
+                      <input type="text" name="cardExpiry" required onInput={handleExpiryDateInput} maxLength="5" placeholder="MM/YY" />
+                    </div>
+                    <div style={{ flex: '1' }}>
+                      <label>CVV</label>
+                      <input type="text" name="cardCvc" required placeholder='***' maxLength="3" />
+                    </div>
+                  </div>
+                  <p className='trial-notice'>Une pré-autorisation temporaire du montant sera effectuée sur votre compte.</p>
+                  <button className='buy' type="submit" disabled={isLoading}>
+                    {isLoading ? 'Vérification...' : 'Démarrer mon essai'}
+                  </button>
+                  <p className='buy-notice'>Vous êtes à l'étranger ? <a onClick={handleStripePayment}>Payer avec Stripe</a></p>
+                </form>
+              ) : (
+                <div>
+                  <h3>{selectedPlan} : 30 jours gratuit</h3>
+                  <span>0€ pendant 30 jours, puis {getPlanPrice(selectedPlan)} annulez avant pour ne pas être facturé.</span>
+                  <form className="stripe-form">
+                    {clientSecret ? (
+                      <EmbeddedCheckoutProvider
+                        stripe={stripePromise}
+                        options={options}
+                      >
+                        <EmbeddedCheckout />
+                      </EmbeddedCheckoutProvider>
+                    ) : (
+                      <p>Loading...</p>
+                    )}
+                  </form>
                 </div>
-                <p className='trial-notice'>Une pré-autorisation temporaire du montant sera effectuée sur votre compte.</p>
-                <button className='buy' type="submit" disabled={isLoading}>
-                  {isLoading ? 'Vérification...' : 'Démarrer mon essai'}
-                </button>
-              </form>
-              
+              )}
             </div>
           </div>
         </div>

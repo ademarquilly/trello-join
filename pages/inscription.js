@@ -86,7 +86,7 @@ export default function Starts() {
         </div>
       )}
       
-        <img className='logo brand' src='keltis-logo.png' alt="Brand" />
+        <img className='logo brand' src='keltis-full.png' alt="Brand" />
         <img className='logo upwork' src='upwork-logo.png' alt="Upwork" />
 
         <h1>Finalisez votre inscription Experts</h1>

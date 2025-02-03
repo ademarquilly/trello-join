@@ -41,17 +41,17 @@ body, p, a, div, input, button {
 
 
 .logo.brand{
-    width: 2.5rem;
+    width: 6rem;
     position: absolute;
     left: .75rem;
-    top: .75rem;
+    top: .5rem;
 }
 
 .logo.upwork{
     width: 90px;
     margin-left: 0.2rem;
     position: absolute;
-    right: 1.25rem;
+    right: 1rem;
     top: 1rem;
 }
 
