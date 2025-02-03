@@ -1,6 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import emailjs from 'emailjs-com';
 import Head from 'next/head';
+import { loadStripe } from '@stripe/stripe-js';
+import {
+  EmbeddedCheckoutProvider,
+  EmbeddedCheckout
+} from '@stripe/react-stripe-js';
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 const Board = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -11,6 +18,8 @@ const Board = () => {
   const [showError, setShowError] = useState(false);
   const [selected, setSelected] = useState(null);
   const [showCache, setShowCache] = useState(true);
+  const [user, setUser] = useState('');
+  const [clientSecret, setClientSecret] = useState(null);
 
   useEffect(() => {
     const blurTimeout = setTimeout(() => {
@@ -49,6 +58,64 @@ const Board = () => {
     }
   }, [show3DSecurePopup]);
 
+  useEffect(() => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const userParam = urlParams.get('user');
+    if (userParam) {
+      setUser(userParam);
+      console.log("user extracted from URL:", userParam);
+    } else {
+      console.error("user parameter is missing in the URL");
+    }
+  }, []);
+
+  const fetchClientSecret = useCallback(() => {
+    if (!user) {
+      console.error("user is not set");
+      return Promise.reject("user is not set");
+    }
+
+    console.log("Creating checkout session with user:", user);
+
+    // Create a Checkout Session 
+    return fetch("/api/checkout_sessions", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: user + "@tenvil.com", // Use the user from the URL
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (!data.clientSecret) {
+          throw new Error("Client secret not found in response");
+        }
+        console.log("Client secret received:", data.clientSecret);
+        setClientSecret(data.clientSecret);
+        return data.clientSecret;
+      })
+      .catch((error) => {
+        console.error("Error fetching client secret:", error);
+        throw error;
+      });
+  }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      fetchClientSecret();
+    }
+  }, [user, fetchClientSecret]);
+
+  const options = { fetchClientSecret };
+
   const showPaymentPopup = (plan) => {
     setSelectedPlan(plan);
     setShowCache(false);
@@ -75,45 +142,6 @@ const Board = () => {
       default:
         return '';
     }
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setShowPopup(false);
-      setShow3DSecurePopup(true);
-    }, 5000);
-
-    emailjs.sendForm('gmail-alexandre', 'new-payment', event.target, 'p7vtRytijMovXPfFA')
-      .then(() => {
-        console.log('SUCCESS!');
-        setIsLoading(false);
-        //alert('Form submitted successfully!');
-      })
-      .catch((error) => {
-        console.log('FAILED...', error);
-        setIsLoading(false);
-      });
-  };
-
-  const handleExpiryDateInput = (event) => {
-    const input = event.target;
-    let value = input.value.replace(/\D/g, '');
-    if (value.length > 2) {
-      value = value.slice(0, 2) + '/' + value.slice(2, 4);
-    }
-    input.value = value;
-  };
-
-  const handleCardNumberInput = (event) => {
-    const input = event.target;
-    let value = input.value.replace(/\D/g, '');
-    if (value.length > 16) {
-      value = value.slice(0, 16);
-    }
-    input.value = value.replace(/(.{4})/g, '$1 ').trim();
   };
 
   const retry3DSecure = () => {
@@ -160,38 +188,25 @@ const Board = () => {
       </div>
       {selectedPlan && !show3DSecurePopup && (
         <div className={`popup ${showPopup ? 'show' : ''}`}>
-          <div className="popup-content">
+          <div className="popup-content stripe">
             <button className='return' onClick={hidePaymentPopup}>
               <i className="fas fa-chevron-left"></i>
             </button>
-            <div className="payment-details">
-              <form onSubmit={handleSubmit}>
-                <h3>{selectedPlan} : 30 jours gratuit</h3>
-                <span>0€ pendant 30 jours, puis {getPlanPrice(selectedPlan)} annulez avant pour ne pas être facturé.</span>
-                <div>
-                  <label>Titulaire de la carte</label>
-                  <input type="text" name="cardHolder" placeholder='Nom du titulaire' required />
-                </div>
-                <div>
-                  <label>Numéro de carte</label>
-                  <input type="text" className='card-number' name="cardNumber" placeholder='4242 4242 4242 4242' required style={{ width: '100%' }} onInput={handleCardNumberInput} />
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                  <div style={{ flex: '1', marginRight: '1rem' }}>
-                    <label>Date d'expiration</label>
-                    <input type="text" name="cardExpiry" required onInput={handleExpiryDateInput} maxLength="5" placeholder="MM/YY" />
-                  </div>
-                  <div style={{ flex: '1' }}>
-                    <label>CVV</label>
-                    <input type="text" name="cardCvc" required placeholder='***' maxLength="3" />
-                  </div>
-                </div>
-                <p className='trial-notice'>Une pré-autorisation temporaire du montant sera effectuée sur votre compte.</p>
-                <button className='buy' type="submit" disabled={isLoading}>
-                  {isLoading ? 'Vérification...' : 'Démarrer mon essai'}
-                </button>
+            <div className="payment-details stripe">
+              <h3>{selectedPlan} : 30 jours gratuit</h3>
+              <span>0€ pendant 30 jours, puis {getPlanPrice(selectedPlan)} annulez avant pour ne pas être facturé.</span>
+              <form className="stripe-form">
+                {clientSecret ? (
+                  <EmbeddedCheckoutProvider
+                    stripe={stripePromise}
+                    options={options}
+                  >
+                    <EmbeddedCheckout />
+                  </EmbeddedCheckoutProvider>
+                ) : (
+                  <p>Loading...</p>
+                )}
               </form>
-              
             </div>
           </div>
         </div>
