@@ -15,7 +15,7 @@ const Rejoindre = () => {
         </style>
       </Head>
       <iframe 
-        data-tally-src="https://tally.so/r/nrJGDM" 
+        data-tally-src="https://tally.so/r/3lKY9X" 
         width="100%" 
         height="100%" 
         frameborder="0" 
