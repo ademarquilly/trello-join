@@ -2,41 +2,37 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const sig = req.headers['stripe-signature'];
-    let event;
-
     try {
-      event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+      const { email } = req.body;
+      if (!email) {
+        throw new Error("Invalid email address");
+      }
+
+      console.log("Creating checkout session with email:", email);
+
+      const session = await stripe.checkout.sessions.create({
+        ui_mode: 'embedded',
+        line_items: [
+          {
+            price: 'price_1Qot1WA7EOX8e0ZRbJEpw2Y6', // Replace with your price ID
+            quantity: 1,
+          },
+        ],
+        mode: 'subscription',
+        subscription_data: {
+          trial_period_days: 1, // Set trial period to 1 day
+        },
+        customer_email: email, // Pre-fill email
+        return_url: `${req.headers.origin}/stripe-form?goal=success`,
+      });
+      console.log("Checkout session created:", session);
+      res.send({ clientSecret: session.client_secret });
     } catch (err) {
-      console.error('Webhook signature verification failed.', err.message);
-      return res.status(400).send(`Webhook Error: ${err.message}`);
+      console.error("Error creating checkout session:", err);
+      res.status(err.statusCode || 500).json(err.message);
     }
-
-    if (event.type === 'customer.subscription.created') {
-      const subscription = event.data.object;
-
-      // Schedule a task to update the subscription after 1 hour
-      setTimeout(async () => {
-        try {
-          await stripe.subscriptions.update(subscription.id, {
-            trial_end: 'now',
-          });
-          console.log(`Subscription ${subscription.id} updated to end trial immediately.`);
-        } catch (err) {
-          console.error(`Failed to update subscription ${subscription.id}:`, err);
-        }
-      }, 3600 * 1000); // 1 hour in milliseconds
-    }
-
-    res.status(200).send('Received webhook');
   } else {
     res.setHeader('Allow', 'POST');
     res.status(405).end('Method Not Allowed');
   }
 }
-
-export const config = {
-  api: {
-    bodyParser: false, // Disable body parsing, so we can handle raw body
-  },
-};
