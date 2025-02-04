@@ -33,7 +33,7 @@ export default async function handler(req, res) {
         } catch (err) {
           console.error(`Failed to update subscription ${subscription.id}:`, err);
         }
-      }, 3600 * 1000); // 1 hour in milliseconds
+      }, 30 * 1000); // 1 hour in milliseconds
     }
 
     res.status(200).send('Received webhook');
