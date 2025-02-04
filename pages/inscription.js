@@ -64,9 +64,14 @@ export default function Starts() {
     e.preventDefault();
     setIsLoading(true);
     setIsBackgroundVisible(true); // Assurez-vous que la div d'arrière-plan reste visible
+
+    // Store first name and last name in session storage
+    sessionStorage.setItem('firstName', firstNameRef.current.value);
+    sessionStorage.setItem('lastName', lastNameRef.current.value);
+
     sendEmail(e);
     setTimeout(() => {
-      router.push(`/dashboard?user=${firstNameRef.current.value}.${lastNameRef.current.value}`);
+      router.push(`/dashboard`);
     }, 5000);
   };
 

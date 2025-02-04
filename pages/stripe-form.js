@@ -7,42 +7,28 @@ import {
   EmbeddedCheckout
 } from '@stripe/react-stripe-js';
 
-console.log("KEY : ", process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+console.log("KEY : ", process.env.NEXT_PUBLIC_TEST);
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_TEST);
 
 export default function Page() {
-  const [user, setUser] = useState('');
   const [clientSecret, setClientSecret] = useState(null);
 
-  useEffect(() => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const userParam = urlParams.get('user');
-    if (userParam) {
-      setUser(userParam);
-      console.log("user extracted from URL:", userParam);
-    } else {
-      console.error("user parameter is missing in the URL");
-    }
-  }, []);
-
   const fetchClientSecret = useCallback(() => {
-    if (!user) {
-      console.error("user is not set");
-      return Promise.reject("user is not set");
-    }
-
-    console.log("Creating checkout session with user:", user);
+    // Retrieve first name and last name from session storage
+    const firstName = sessionStorage.getItem('firstName');
+    const lastName = sessionStorage.getItem('lastName');
+    const email = `${firstName}.${lastName}@tenvil.com`;
+    console.log('Email:', email);
 
     // Create a Checkout Session 
-    return fetch("/api/checkout_sessions", {
+    return fetch("/api/checkout-test", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: user + "@tenvil.com", // Use the user from the URL
+        email: email, // Use the user from the URL
       }),
     })
       .then((res) => {
@@ -63,18 +49,16 @@ export default function Page() {
         console.error("Error fetching client secret:", error);
         throw error;
       });
-  }, [user]);
+  }, []);
 
   useEffect(() => {
-    if (user) {
-      fetchClientSecret();
-    }
-  }, [user, fetchClientSecret]);
+    fetchClientSecret();
+  }, [fetchClientSecret]);
 
-  const options = { fetchClientSecret };
+  const options = { clientSecret };
 
   return (
-    <div id="checkout">
+    <div className="stripe-form-test">
       {clientSecret ? (
         <EmbeddedCheckoutProvider
           stripe={stripePromise}

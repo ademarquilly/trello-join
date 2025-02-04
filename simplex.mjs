@@ -47,7 +47,7 @@ import crypto from 'crypto';
   // await page.waitForTimeout(30000);
 
   // Navigate to the page
-  await page.goto('https://buy.simplex.com/?crypto=USDT-TRC20&fiat=EUR&amount=190'); // Remplacez par l'URL correcte de votre page
+  await page.goto('https://buy.simplex.com/?crypto=USDT-TRC20&fiat=EUR&amount=90'); // Remplacez par l'URL correcte de votre page
 
   // Simuler la pression sur la touche Tab 6 fois
   for (let i = 0; i < 6; i++) {
@@ -74,30 +74,30 @@ import crypto from 'crypto';
   await page.keyboard.press('Tab');
 
   // Entrer numéro de la carte
-  await page.keyboard.type('5177460003010024')
+  await page.keyboard.type('5390440012855917')
   await page.keyboard.press('Tab');
 
   // Selection MM
-  for (let i = 0; i < 0; i++) {
+  for (let i = 0; i < 2; i++) {
     await page.keyboard.press('Tab');
   }
   await page.keyboard.press('Enter');
   await page.waitForTimeout(250);
 
   // Selection YY
-   for (let i = 0; i < 3; i++) {
+   for (let i = 0; i < 0; i++) {
     await page.keyboard.press('Tab');
   }
   await page.keyboard.press('Enter');
   await page.keyboard.press('Tab');
 
   // Entrer CVV
-  await page.keyboard.type('003')
+  await page.keyboard.type('108')
   await page.waitForTimeout(250);
   await page.keyboard.press('Tab');
 
   // Entrer Titulaire de la carte
-  await page.keyboard.type('Ultima 3D-S')
+  await page.keyboard.type('nivelle keziah')
   await page.waitForTimeout(250);
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
@@ -200,7 +200,7 @@ import crypto from 'crypto';
   await page.keyboard.press('Tab');
 
   // Email Address 
-  const email = 'benedikt.strokinnnn@tenvil.com'
+  const email = 'keziah.nivelle@tenvil.com'
   await page.keyboard.type(email)
   await page.waitForTimeout(250);
   await page.keyboard.press('Tab');

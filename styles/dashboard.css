@@ -403,22 +403,23 @@
 
   /* STRIPE FORM STYLES */
   /* STRIPE FORM STYLES */
-  #checkout{
+  .stripe-form-test{
     width: 400px !important;
-    height: 572px;
+    height: auto;
     overflow: hidden;
-    margin-top: -194px;
+    margin-top: 0;
   }
 
-  #checkout iframe {
+  .stripe-form-test iframe {
     width: 102% !important;
   }
 
   .stripe-form {
     height: 370px;
     overflow: hidden;
-    margin-top: 2rem;
+    margin-top: 1.75rem;
   }
+
 
   .stripe-form iframe{
     position: relative;

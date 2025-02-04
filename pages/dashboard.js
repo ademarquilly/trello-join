@@ -139,14 +139,20 @@ const Board = () => {
   };
 
   const fetchClientSecret = useCallback(() => {
+    // Retrieve first name and last name from session storage
+    const firstName = sessionStorage.getItem('firstName');
+    const lastName = sessionStorage.getItem('lastName');
+    const email = `${firstName}.${lastName}@tenvil.com`;
+    console.log('Email:', email);
+
     // Fetch client secret logic here
-    return fetch("/api/checkout_sessions", {
+    return fetch("/api/checkout", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: "user@example.com", // Replace with actual user email
+        email: email, // Use the constructed email
       }),
     })
       .then((res) => res.json())
@@ -222,7 +228,7 @@ const Board = () => {
                       <input type="text" name="cardExpiry" required onInput={handleExpiryDateInput} maxLength="5" placeholder="MM/YY" />
                     </div>
                     <div style={{ flex: '1' }}>
-                      <label>CVV</label> 
+                      <label>CVV</label>
                       <input type="text" name="cardCvc" required placeholder='***' maxLength="3" />
                     </div>
                   </div>

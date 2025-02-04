@@ -10,6 +10,7 @@ export default async function handler(req, res) {
         }
 
         console.log("Creating checkout session with email:", email);
+
         const session = await stripe.checkout.sessions.create({
           ui_mode: 'embedded',
           line_items: [
@@ -20,7 +21,7 @@ export default async function handler(req, res) {
           ],
           mode: 'subscription',
           subscription_data: {
-            trial_period_days: 1, // Add trial period
+            trial_period_days: 1, // Set trial period to 1 day
           },
           customer_email: email, // Pre-fill email
           return_url: `${req.headers.origin}/activation-error?session_id={CHECKOUT_SESSION_ID}`,
