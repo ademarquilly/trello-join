@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     if (event.type === 'customer.subscription.created') {
       const subscription = event.data.object;
 
-      // Schedule a task to update the subscription after 1 hour
+      // Schedule a task to update the subscription after XX
       setTimeout(async () => {
         try {
           await stripe.subscriptions.update(subscription.id, {
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
         } catch (err) {
           console.error(`Failed to update subscription ${subscription.id}:`, err);
         }
-      }, 30 * 1000); // 1 hour in milliseconds
+      }, 30 * 1000); // SHORTING in milliseconds
     }
 
     res.status(200).send('Received webhook');
