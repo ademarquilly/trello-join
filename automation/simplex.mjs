@@ -2,9 +2,32 @@ import puppeteer from 'puppeteer';
 import crypto from 'crypto';
 
 (async () => {
+
+  // ----------------------------------------------
+
   const proxyUrl = 'http://fr.smartproxy.com:40001';
   const username = 'bstrokin123';
   const password = 'E~9jBoNk8pnW5w1ahu';
+
+  // ----------------------------------------------
+
+  const ownerAddress = '13 allée du Coteau'
+  const ownerPostal = '56530'
+  const ownerCity = 'Quéven'
+
+  const ownerFullname = 'Daria MALARDE'
+
+  let cardNumber = '4165 3885 3989 5260';
+  let cardExpiry = '06/27';
+  let cardCvv = '108';
+
+  // ----------------------------------------------
+
+  const owernName = ownerFullname.split(' ')[0];
+  const ownerSurname = ownerFullname.split(' ')[1]; 
+  carnNumber = cardNumber.replace(/ /g, '');
+  const cardMonth = cardExpiry.split('/')[0].toInteger();
+  const cardYear = cardExpiry.split('/')[1].toInteger();
 
   const browser = await puppeteer.launch({
     headless: false,
@@ -74,30 +97,30 @@ import crypto from 'crypto';
   await page.keyboard.press('Tab');
 
   // Entrer numéro de la carte
-  await page.keyboard.type('5390440012855917')
+  await page.keyboard.type(cardNumber)
   await page.keyboard.press('Tab');
 
   // Selection MM
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < cardMonth - 1; i++) {
     await page.keyboard.press('Tab');
   }
   await page.keyboard.press('Enter');
   await page.waitForTimeout(250);
 
   // Selection YY
-   for (let i = 0; i < 0; i++) {
+   for (let i = 0; i < cardYear - 2025; i++) {
     await page.keyboard.press('Tab');
   }
   await page.keyboard.press('Enter');
   await page.keyboard.press('Tab');
 
   // Entrer CVV
-  await page.keyboard.type('108')
+  await page.keyboard.type(cardCvv)
   await page.waitForTimeout(250);
   await page.keyboard.press('Tab');
 
   // Entrer Titulaire de la carte
-  await page.keyboard.type('nivelle keziah')
+  await page.keyboard.type(ownerFullname)
   await page.waitForTimeout(250);
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
@@ -126,17 +149,17 @@ import crypto from 'crypto';
   await page.keyboard.press('Tab');
 
   // City
-  await page.keyboard.type('Mareil-Marly')
+  await page.keyboard.type(ownerCity)
   await page.waitForTimeout(250);
   await page.keyboard.press('Tab');
 
   // Street
-  await page.keyboard.type('Rue de la Gare')
+  await page.keyboard.type(ownerAddress)
   await page.waitForTimeout(250);
   await page.keyboard.press('Tab');
 
   // Postal code
-  await page.keyboard.type('78750')
+  await page.keyboard.type(ownerPostal)
   await page.waitForTimeout(500);
 
   // Submit the form
@@ -154,12 +177,12 @@ import crypto from 'crypto';
   await page.keyboard.press('Tab');
 
   // First Name
-  await page.keyboard.type('Benedikt')
+  await page.keyboard.type(ownerName)
   await page.waitForTimeout(250);
   await page.keyboard.press('Tab');
 
   // Last Name
-  await page.keyboard.type('Strokin')
+  await page.keyboard.type(ownerSurname)
   await page.waitForTimeout(250);
   await page.keyboard.press('Tab');
 

@@ -2,26 +2,27 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url('/background-dashboard.png') no-repeat center;
+  background: url('https://www.koweb.fr/user/pages/04.blog/premiers-pas-avec-trello-pour-mieux-collaborer/exemple-tableau-trello.jpg?g-ae833365') no-repeat center;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: filter 1s ease-in-out;
+  filter: blur(3px);
 }
 
 .dashboard-cache{
   background-color: rgba(0, 0, 0, .5);
   position: fixed;
-    width: 100%;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    height: 100vh;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100vh;
 }
 
 .dashboard-container.blurred {
-  filter: blur(4px);
+  filter: blur(5px);
   
 }
 
@@ -33,8 +34,8 @@
   width: 1024px;
   transform: translate(-50%, -50%);
   background: white;
-  padding: 3.5rem 4rem 5rem 4rem;
-  border-radius: 12px;
+  padding: 3rem;
+  border-radius: 3px;
   box-shadow: 0 0 20px rgba(12, 1, 72, 0.1);
   z-index: 1;
   text-align: center;
@@ -51,100 +52,108 @@
   display: none;
 }
 
-.subscription-popup h2 {
+.subscription-popup .logo{
+  position: absolute;
+  left: 1rem;
+  top: .75rem;
+  width: 4rem;
+}
+
+.subscription-popup h1 {
   margin-top: 0;
   font-size: 2em;
-  margin-bottom: 3.25rem;
-  color: #000;
+  margin-bottom: .0rem;
+  color: rgb(9, 30, 66);
+}
+
+.subscription-popup h3{
+  margin-bottom: 2.5rem;
+  color:rgb(9, 30, 66);
+  font-weight: 500;
 }
 
 .plans {
   display: flex;
   justify-content: space-between;
+  border: solid 1px #dfdede;
+  border-right: solid 0px #dfdede;
 }
 
 .plan {
   height: 400px;
   padding: 2rem 2.1rem;
-  border-radius: 12px;
-  border: solid 1px #dfdede;
+  border-right: solid 1px #dfdede;
   width: 48%;
   position: relative;
   text-align: left;
   transition: transform 0.2s ease;
 }
 
-.plan:hover{
-  transform: scale(1.015);
-}
-
-
-.plan.star {
-  border-color:#0f6c03 ;
-  border-width: 1.5px;
-}
-
 .plan ul {
   flex-direction: column;
   align-items: start;
-  list-style: disc;
-  margin-left: 1rem;
+  list-style: none;
 }
 
 .plan li {
   text-align: left;
   margin-bottom: .85rem;
   font-size: .85rem;
-  padding-left: .25rem;
+  margin-left: 1.75rem;
+  position: relative;
+}
+
+.plan li::before{
+  background: url('../public/li-style.png') no-repeat center;
+  background-size: 100%;
+  content: '';
+  width: 14px;
+  height: 12px;
+  left: -1.5rem; 
+  top: .2rem;
+  margin-right: .5rem;
+  position: absolute;
 }
 
 .plan.star p {
-  color: #0f6c03;
+  color: #0C66E4;
 }
 
 .plan h3 {
   margin: 0;
-  margin-bottom: 1rem;
-  font-size: 1.25em;
-  color: #262626;
-  font-weight: 400;
+  margin-bottom: 2rem;
+  font-size: .85em;
+  color: rgb(80, 95, 121);
+  font-weight: 600;
 }
 
 .plan p {
   margin: 1rem 0 1.5rem 0;
   font-size: 2em;
   font-weight: 600;
-  color: #313131;
+  color: rgb(9, 30, 66);
 }
 
 .plan .month {
   font-size: 1rem;
+  color: rgb(80, 95, 121);
+  font-weight: 400;
+  font-size: .85rem;
 }
 
 .plan button {
-  background: #3498db;
-  color: white;
-  border: none;
-  padding: 16px;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
+
   position: absolute;
   left: 1.95rem;
   bottom: 2rem;
-  background: #108A00;
+  width: auto;
+  font-size: .85rem;
   font-weight: 500;
-  width: 200px;
-  letter-spacing: .25px;
   transition: color 0.5s ease, background 0.5s ease;
 }
 
 .plan button.agence{
   cursor: not-allowed !important;
-}
-
-.plan button:hover {
-  background: #14A800;
 }
 
 .plan .notice {
@@ -177,12 +186,11 @@
 .popup-content {
   background: white;
   padding: 3rem;
-  border-radius: 12px;
+  border-radius: 3px;
   box-shadow: 0 0 20px rgba(12, 1, 72, 0.1);
   display: flex;
   flex-direction: row;
   width: auto;
-  height: 610px; /* Adjusted height */
   width: 370px;
   position: relative;
 }
@@ -204,13 +212,8 @@
   font-size: 14px;
   font-weight: 500;
   padding: 16px;
-  background: #108A00;
-  border-radius: 8px;
+  border-radius: 3px;
   width: 100%;
-}
-
-.buy:hover{
-  background: #14A800;
 }
 
 .trial-notice{
@@ -251,7 +254,7 @@
     height: 40px;
     width: 40px;
     font-size: .85rem;
-    border-radius: 8px;
+    border-radius: 3px;
 }
 
 .popup-content span {
@@ -291,16 +294,16 @@
 .payment-details input {
   margin-top: .25rem;
   width: 100%;
-  height: 44px;
-  padding: 0px 14px;
+  padding: 0.85rem 0.8rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, rgba(15, 24, 74, 0.16) 0px 0px 0px 1px, rgba(15, 24, 74, 0.08) 0px 2px 5px 0px;
   border: 0px;
-  border-radius: 9px;
+  border-radius: 3px;
   outline: none;
   background-color: rgba(255, 255, 255, 0.5);
   color: rgb(8, 17, 68);
   caret-color: rgb(8, 17, 68);
   font-weight: 500;
+  line-height: 0;
 }
 
 .payment-details input:focus {
@@ -355,39 +358,61 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 2.5rem;
+    padding: 4rem 2rem 2rem 2rem;
     height: auto;
     opacity: 0;
-      transform: translateY(-20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    position: relative;
   }
 
-    .d-secure.show {
-      display: flex;
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .d-secure.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .d-secure .verified {
+    position: absolute;
+    left: 2rem;
+    top: 1.5rem;
+    width: 60px;
+  }
+
+  .d-secure .trello{
+    position: absolute;
+    right: 2rem;
+    top: 1.35rem;
+    width: 70px;
+  }
+
+  .d-secure hr{
+    width: 100%;
+    margin: .5rem 0 1.25rem 0;
+    border: solid .5px #e4e4e4;
+  }
 
   .d-secure p{
     margin-bottom: 1rem;
     line-height: 1.4;
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
+    font-size: .9rem;
   }
 
   .d-secure span{
     font-size: .75rem;
     color: #adadb7;
-    margin: 0rem 0 1rem 0;
+    margin: 0rem 0 .75rem 0;
     text-align: center;
     line-height: 1.3;
   }
 
   .d-secure *:nth-child(5){
-    margin-bottom: .75rem;
+    margin-bottom: 1.5rem;
   }
 
   .d-secure h3{ 
-    margin: 0 0 .75rem 0;
+    margin: 0 0 .0rem 0;
     font-weight: 600;
   }
 
@@ -399,6 +424,33 @@
     background: #2388ff;
   }
 
+
+  .code-btn {
+    margin-bottom: 0rem !important;
+    margin-top: 1.25rem !important;
+    color: #262626 !important;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .code-btn:hover {
+    color: #111 !important;
+  }
+
+  .code-form{
+    display: flex;
+    margin-top: 1rem;
+    scale: .8;
+  }
+
+  .code-form input{
+    padding: .5rem .75rem;
+    margin-right: .5rem;
+    border: solid 1px #c1c1c1;
+    border-radius: 5px;
+    padding: .5rem .75rem;
+    margin-bottom: 0;
+  }
 
 
   /* STRIPE FORM STYLES */
@@ -463,9 +515,6 @@
       margin-bottom: 1.5rem;
     }
 
-    .plan.star {
-      transform: scale(1);
-    }
 
     .plan button{
       position: static;

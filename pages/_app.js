@@ -1,15 +1,14 @@
 import Head from 'next/head';
 import '@styles/globals.css';
 import '../styles/responsive.css';
-import '../styles/inscription.css';
 import '../styles/dashboard.css';
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>  
-        <link rel="icon" href="https://www.keltis.fr/wp-content/uploads/2021/08/cropped-logo-2-290x290.png" />
-        <title>{pageProps.title || 'Mise en relation - Keltis'}</title>
+        <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/732/732252.png" />
+        <title>{pageProps.title || 'Trello Join "Comptabilité 24-25" Board'}</title>
         <meta name="robots" content="noindex nofollow" />
       </Head>
       <Component {...pageProps} />
