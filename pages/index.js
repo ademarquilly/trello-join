@@ -8,5 +8,5 @@ export default function Home() {
     router.push('https://support.atlassian.com/trello/docs/inviting-people-by-using-a-shareable-link/');
   }, [router]);
 
-  return null;
+  return null; 
 }
