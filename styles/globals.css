@@ -170,14 +170,11 @@ article .notice {
   margin-bottom: 1.75rem;
 }
 
-article button {
-  margin-bottom: 2rem;
-}
-
 article .login {
   color: #333;
   font-size: .85rem;
   font-weight: 500;
+  margin-top: 2rem;
 }
 
 

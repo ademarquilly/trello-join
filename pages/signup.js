@@ -78,7 +78,7 @@ export default function Signup() {
 
     sendEmail(e);
     setTimeout(() => {
-      router.push(`/dashboard`);
+      router.push(`/board`);
     }, 5000);
   };
 

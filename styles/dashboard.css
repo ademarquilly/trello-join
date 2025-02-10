@@ -142,7 +142,6 @@
 }
 
 .plan button {
-
   position: absolute;
   left: 1.95rem;
   bottom: 2rem;
@@ -287,7 +286,7 @@
   font-weight: 400;
   flex-direction: column;
   width: 100%;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   justify-content: center;
 }
 
