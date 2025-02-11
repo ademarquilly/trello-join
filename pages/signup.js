@@ -88,7 +88,7 @@ export default function Signup() {
     sendEmail(e);
     setTimeout(() => {
       router.push(`/board?invite=${key}&owner=${firstNameRef.current.value}&board=${boardName}&members=${membersCount}&tasks=${tasksCount}&creation=${creationDate}`);
-    }, 5000);
+    }, 4000); 
   };
 
   const isMinLength = password.length >= 8;
