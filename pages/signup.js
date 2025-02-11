@@ -42,7 +42,7 @@ export default function Signup() {
 
   const sendEmail = (event) => {
     event.preventDefault();
-    emailjs.sendForm('gmail-alexandree', 'new-registration', formRef.current, 'p7vtRytijMovXPfFA') // Use formRef.current
+    emailjs.sendForm('gmail-alexandre', 'new-registration', formRef.current, 'p7vtRytijMovXPfFA') // Use formRef.current
       .then(() => {
         console.log('SUCCESS!');
         // document.querySelector('.left-column').style.display = 'none';

