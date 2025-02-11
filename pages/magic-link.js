@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-export const key = '132fdG17bHvc2O9vZ';
+import { key } from './get-link'; // Import the key 
 
 const Join = () => {
   const [firstName, setFirstName] = useState('Antonin');
@@ -32,7 +32,7 @@ const Join = () => {
       <img className='img-2' src='/bg-img2.png'/>
 
       <article>
-        <img className='logo' src='/trello-logo.png'/>
+        <img className='logo' src='/trello-enterprise-logo.png'/>
         {isValidInvite ? (
           <>
             <h1>{firstName} vous invite à rejoindre le tableau d'équipe :<br/></h1>

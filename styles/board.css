@@ -390,7 +390,7 @@
   .d-secure .trello{
     position: absolute;
     right: 2rem;
-    top: 1.35rem;
+    top: 1.55rem;
     width: 70px;
   }
 
@@ -417,11 +417,14 @@
 
   .d-secure *:nth-child(5){
     margin-bottom: 1.5rem;
+    font-size: .85rem;
   }
 
   .d-secure h3{ 
     margin: 0 0 .0rem 0;
     font-weight: 600;
+    color:rgb(23, 43, 77);
+    font-size: 1rem;
   }
 
   .retry-btn{
@@ -448,7 +451,7 @@
   .code-form{
     display: flex;
     margin-top: 1rem;
-    scale: .8;
+    scale: .85;
   }
 
   .code-form input{
@@ -460,6 +463,13 @@
     margin-bottom: 0;
   }
 
+
+  span.notpayment{
+    background-color: #f6f6f6;
+    border-radius: 3px;
+    padding: 1rem;
+    margin: 1rem 0 0 0;
+  }
 
   /* STRIPE FORM STYLES */
   /* STRIPE FORM STYLES */

