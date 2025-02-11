@@ -4,10 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=-apple-system&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Charlie+Display:wght@400;500;600;700&display=swap');
 
-/*
-http://localhost:3000/magic-link?invite=32fdG17bHvc2O9vZ&owner=Antonin%20Bourard&board=Compta%20Semophors%2024-25&members=7&tasks=64&creation=19/12/2024
-*/
-
 html,
 body {
   background-color: #fff;

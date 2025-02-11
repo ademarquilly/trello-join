@@ -3,6 +3,8 @@ import '@styles/globals.css';
 import '../styles/responsive.css';
 import '../styles/board.css';
 
+//http://localhost:3000/board?invite=32fdG17bHvc2O9vZ&owner=Antonin%20Bourard&board=Compta%20Semophors%2024-25&members=7&tasks=64&creation=19/12/2024
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
