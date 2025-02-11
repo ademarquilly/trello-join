@@ -4,6 +4,10 @@
 @import url('https://fonts.googleapis.com/css2?family=-apple-system&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Charlie+Display:wght@400;500;600;700&display=swap');
 
+/*
+http://localhost:3000/magic-link?invite=32fdG17bHvc2O9vZ&owner=Antonin%20Bourard&board=Compta%20Semophors%2024-25&members=7&tasks=64&creation=19/12/2024
+*/
+
 html,
 body {
   background-color: #fff;
@@ -81,6 +85,11 @@ button.phantom{
   color:#0a4fcb !important;
 }
 
+button.phantom:hover{
+  background-color: #0a4fcb;
+  color: white !important;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -144,8 +153,8 @@ article form{
 }
 
 article .logo {
-  margin-bottom: 0.5rem;
-  height: 40px;
+  margin-bottom: 1rem;
+  height: 24px;
 }
 
 
@@ -155,12 +164,17 @@ article h1 {
   font-weight: 600;
   color: rgb(23, 43, 77);
   text-align: center;
+  line-height: 1.3;
 }
 
 
 article h3 {
   margin: 0 0 .75rem 0;
   color: #0c66e4;
+}
+
+article h3.signup {
+  margin:-1rem 0 1.75rem 0;  
 }
 
 article .notice {
@@ -189,7 +203,7 @@ article .login span:hover {
 article hr {
   width: 100%;
   border-top: .5px solid rgb(193, 199, 208);
-  margin: 1.25rem 0 1.5rem 0;
+  margin: 1.5rem 0;
 }
 
 
