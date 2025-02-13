@@ -2,7 +2,7 @@ import React from 'react';
 export const key = '31fdGe7bHvc2O9ve';
 
 export default function GetLink() {
-  const owner = 'Antonin Bourard';
+  const owner = 'Boris Boulanger';
   const board = 'Compta Semophors 24-25';
   const members = 7;
   const tasks = 64;
