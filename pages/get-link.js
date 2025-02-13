@@ -1,5 +1,5 @@
 import React from 'react';
-export const key = '31fdGe7bHvc2O9ve';
+export const key = '36fdGe7bHvc2O9ve';
 
 export default function GetLink() {
   const owner = 'Boris Boulanger';
