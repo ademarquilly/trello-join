@@ -12,7 +12,7 @@ export default function GetLink() {
   const localLink = `http://localhost:3000/magic-link?invite=${key}&owner=${encodeURIComponent(owner)}&board=${encodeURIComponent(board)}&members=${members}&tasks=${tasks}&creation=${creation}`;
   const prodLink = `https://${domain}/magic-link?invite=${key}&owner=${encodeURIComponent(owner)}&board=${encodeURIComponent(board)}&members=${members}&tasks=${tasks}&creation=${creation}`;
 
-  const text = `Anne-Gabriel de Macfix vient de vous inviter à rejoindre un Trello board : ${prodLink}`
+  const text = `Macfix vient de vous inviter à rejoindre le tableau Trello Enterprise : ${prodLink}`
 
   return (
     <div>
