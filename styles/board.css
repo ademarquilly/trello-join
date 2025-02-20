@@ -397,7 +397,8 @@
   .d-secure hr{
     width: 100%;
     margin: .5rem 0 1.25rem 0;
-    border: solid .5px #e4e4e4;
+    border:none;
+    border-bottom: solid .5px #e4e4e4;
   }
 
   .d-secure p{
