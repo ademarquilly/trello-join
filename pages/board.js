@@ -206,7 +206,7 @@ const Board = () => {
       <div className={`dashboard-container ${isBlurred ? 'blurred' : ''}`}></div>
       {showCache && <div className='dashboard-cache'></div>}
       <div className={`subscription-popup ${selectedPlan ? 'hidden' : ''} ${showPopup ? 'show' : ''}`}>
-        <img src='/trello-enterprise- logo.png' className='logo'/>
+        <img src='/trello-enterprise-logo.png' className='logo'/>
         <h5 className='board'>{boardName}</h5>
 
         <h1>Trello à votre façon.</h1>
