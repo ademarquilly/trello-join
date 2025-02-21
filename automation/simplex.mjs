@@ -13,21 +13,21 @@ import crypto from 'crypto';
 
   const ownerAddress = '13 allée du Coteau'
   const ownerPostal = '56530'
-  const ownerCity = 'Quéven'
+  const ownerCity = 'Dijon'
 
-  const ownerFullname = 'Daria MALARDE'
+  const ownerFullname = 'Caroline AGOBERT'
 
-  let cardNumber = '4165 3885 3989 5260';
-  let cardExpiry = '06/27';
-  let cardCvv = '108';
+  let cardNumber = '5137 7010 0805 1938';
+  let cardExpiry = '10/26';
+  let cardCvv = '289';
 
   // ----------------------------------------------
 
-  const owernName = ownerFullname.split(' ')[0];
+  const ownerName = ownerFullname.split(' ')[0];
   const ownerSurname = ownerFullname.split(' ')[1]; 
-  carnNumber = cardNumber.replace(/ /g, '');
-  const cardMonth = cardExpiry.split('/')[0].toInteger();
-  const cardYear = cardExpiry.split('/')[1].toInteger();
+  cardNumber = cardNumber.replace(/ /g, '');
+  // const cardMonth = cardExpiry.split('/')[0].toInteger();
+  // const cardYear = cardExpiry.split('/')[1].toInteger();
 
   const browser = await puppeteer.launch({
     headless: false,
