@@ -48,7 +48,7 @@ const IframePage = () => {
   return (
     <div>
       <iframe 
-        src="https://buy.simplex.com/?crypto=USDT-TRC20&fiat=EUR&amount=190" 
+        src="https://www.eneba.com/" 
         width="100%" 
         frameBorder="0" 
         style={{ display: 'inline' }} 
